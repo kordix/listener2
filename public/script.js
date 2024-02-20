@@ -42,9 +42,9 @@ let app = new Vue({
             this.fragmenty = this.dane.filter((el)=>el.song == self.piosenka )
         },
         longer(time){
-            this.fragmenty[this.fragmentindex].start += time;
+            this.fragmenty[this.fragmentindex].start = parseFloat(parseFloat(this.fragmenty[this.fragmentindex].start) + parseFloat(time));
             this.fragmenty[this.fragmentindex + 1].start += time;
-            fetch('/updater', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(this.fragmenty[this.fragmentindex]) })
+            fetch('/api/updatedata.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(this.fragmenty[this.fragmentindex]) })
         },
         longerAll(time) {
             this.fragmenty.forEach(element => {
