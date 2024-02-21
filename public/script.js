@@ -63,7 +63,7 @@ let app = new Vue({
             let self = this;
             let audi = document.getElementById('audioelem');
 
-            audi.currentTime = self.fragmenty[self.fragmentindex].start + this.przesuniecie;
+            audi.currentTime = parseFloat(self.fragmenty[self.fragmentindex].start);
             console.log(audi.currentTime);
             audi.play();
 
