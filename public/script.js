@@ -63,6 +63,9 @@ let app = new Vue({
             let self = this;
             let audi = document.getElementById('audioelem');
 
+            console.log(self.fragmentindex);
+            console.log(self.fragmenty[self.fragmentindex]);
+
             audi.currentTime = parseFloat(self.fragmenty[self.fragmentindex].start);
             console.log(audi.currentTime);
             audi.play();
