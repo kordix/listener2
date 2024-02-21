@@ -120,17 +120,17 @@
             console.log(insertdata);
 
 
-            fetch('/populatesong', {method:'POST', headers: {'Content-Type':'application/json'},body:JSON.stringify(insertdata)}).then((res)=>{
+            fetch('/api/insertuj.php', {method:'POST', headers: {'Content-Type':'application/json'},body:JSON.stringify(insertdata)}).then((res)=>{
                 document.querySelector('#addinfo').style.display = 'block';
                 console.log('POSZŁO');
             } );
 
-            let songheader = [{ name: document.querySelector('#songnameinput').value, description: document.querySelector('#descriptioninput').value }];
+            // let songheader = [{ name: document.querySelector('#songnameinput').value, description: document.querySelector('#descriptioninput').value }];
 
-            fetch('/createsong', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(songheader) }).then((res) => {
-                document.querySelector('#addinfo2').style.display = 'block';
-                console.log('POSZŁO');
-            })
+            // fetch('/createsong', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(songheader) }).then((res) => {
+            //     document.querySelector('#addinfo2').style.display = 'block';
+            //     console.log('POSZŁO');
+            // })
             
         
         })
