@@ -56,7 +56,8 @@
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
             const formData = new FormData(form);
-            const response = await fetch('/upload', {
+            formData.append('fileToUpload', document.querySelector('#fileInput').files[0]);
+            const response = await fetch('/api/upload.php', {
                 method: 'POST',
                 body: formData
             });
@@ -127,10 +128,10 @@
 
             // let songheader = [{ name: document.querySelector('#songnameinput').value, description: document.querySelector('#descriptioninput').value }];
 
-            // fetch('/createsong', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(songheader) }).then((res) => {
-            //     document.querySelector('#addinfo2').style.display = 'block';
-            //     console.log('POSZŁO');
-            // })
+            fetch('/api/instertuj2.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(songheader) }).then((res) => {
+                document.querySelector('#addinfo2').style.display = 'block';
+                console.log('POSZŁO');
+            })
             
         
         })
