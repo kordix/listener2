@@ -7,47 +7,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dodawanie utworu</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
-
-        <input type="text" id="songnameinput" placeholder="nazwa piosenki">
-
-        <input type="text" id="descriptioninput" placeholder="opispiosenki" style="margin-right:200px">
-
-            
-
-        <a href="/manager.html"> <button>Zarządzanie</button> </a>
-
-
-
-        <!-- <button id="addsongbutton">Dodaj songs</button> -->
-
-        <br>
-        <br>
-
+    <div class="container">
         <a href="/"><-- strona główna</a>
+                <br>
 
-        <textarea cols="80" rows="30" name="siemano" id="inputarea" placeholder="tutaj wstaw lrc"></textarea>
-        <br>
-        <button type="submit" id="processbutton">Wyślij</button>
+                <input type="text" id="songnameinput" placeholder="nazwa piosenki">
 
-        <p style="display:none;color:red" id="songnameerror"><b> UZUPEŁNIJ NAZWĘ UTWORU</b></p>
-
-        <p id="addinfo" style="display:none"><b>Super dodano piosenkę </b></p>
-
-        <p id="addinfo2" style="display:none"><b>Super dodano do songs </b></p>
+                <input type="text" id="descriptioninput" placeholder="opispiosenki" style="margin-right:200px">
 
 
-        <h1>Dodaj plik</h1>
-        <form id="uploadForm">
-            <input type="file" id="fileInput" name="myFile">
-            <button type="submit">Upload</button>
-        </form>
-        <div id="response"></div>
+
+                <a href="/manager.html"> <button>Zarządzanie</button> </a>
 
 
+
+                <!-- <button id="addsongbutton">Dodaj songs</button> -->
+
+                <br>
+                <br>
+
+
+
+                <textarea cols="80" rows="30" name="siemano" id="inputarea" placeholder="tutaj wstaw lrc"></textarea>
+                <br>
+                <button type="submit" id="processbutton">Wyślij</button>
+
+                <p style="display:none;color:red" id="songnameerror"><b> UZUPEŁNIJ NAZWĘ UTWORU</b></p>
+
+                <p id="addinfo" style="display:none"><b>Super dodano piosenkę </b></p>
+
+                <p id="addinfo2" style="display:none"><b>Super dodano do songs </b></p>
+
+
+                <h1>Dodaj plik</h1>
+                <form id="uploadForm">
+                    <input type="file" id="fileInput" name="myFile">
+                    <button type="submit">Upload</button>
+                </form>
+                <div id="response"></div>
+
+    </div>
 
     <script>
 
@@ -83,37 +87,37 @@
         // })
 
 
-    
 
-        document.querySelector('#processbutton').addEventListener('click', function(){
+
+        document.querySelector('#processbutton').addEventListener('click', function () {
 
             console.log('afsfas');
 
             let songname = document.querySelector('#songnameinput').value;
 
-            if(!songname){
+            if (!songname) {
                 document.querySelector('#songnameerror').style.display = "block";
 
-                         return;
-            }   
+                return;
+            }
 
 
             insertdata = [];
-                inputdata = document.querySelector('#inputarea').value;
+            inputdata = document.querySelector('#inputarea').value;
 
             fragments = inputdata.split("\n");
 
 
-            for(let i =0 ; i < fragments.length ; i++){
-                const timeString = fragments[i].slice(1,9);
+            for (let i = 0; i < fragments.length; i++) {
+                const timeString = fragments[i].slice(1, 9);
                 const [minutes, secondsAndMilliseconds] = timeString.split(':');
                 const [seconds, milliseconds] = secondsAndMilliseconds.split('.');
                 const totalTimeInSeconds = parseInt(minutes) * 60 + parseInt(seconds) + parseInt(milliseconds) / 100;
-           
+
                 insertdata.push({
-                    start:totalTimeInSeconds,
-                    song:document.querySelector('#songnameinput').value,
-                    tekst:fragments[i].slice(10)
+                    start: totalTimeInSeconds,
+                    song: document.querySelector('#songnameinput').value,
+                    tekst: fragments[i].slice(10)
                 })
 
             }
@@ -121,23 +125,23 @@
             console.log(insertdata);
 
 
-            fetch('/api/insertuj.php', {method:'POST', headers: {'Content-Type':'application/json'},body:JSON.stringify(insertdata)}).then((res)=>{
+            fetch('/api/insertuj.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(insertdata) }).then((res) => {
                 document.querySelector('#addinfo').style.display = 'block';
                 console.log('POSZŁO');
-            } );
+            });
 
-            // let songheader = [{ name: document.querySelector('#songnameinput').value, description: document.querySelector('#descriptioninput').value }];
+            let songheader = [{ name: document.querySelector('#songnameinput').value, description: document.querySelector('#descriptioninput').value }];
 
-            fetch('/api/instertuj2.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(songheader) }).then((res) => {
+            fetch('/api/insertuj2.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(songheader) }).then((res) => {
                 document.querySelector('#addinfo2').style.display = 'block';
                 console.log('POSZŁO');
             })
-            
-        
+
+
         })
 
 
- 
+
 
     </script>
 
