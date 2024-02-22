@@ -46,7 +46,7 @@
 
                 <h1>Dodaj plik</h1>
                 <form id="uploadForm">
-                    <input type="file" id="fileInput" name="myFile">
+                    <input type="file" id="fileInput" name="fileToUpload">
                     <button type="submit">Upload</button>
                 </form>
                 <div id="response"></div>
@@ -60,7 +60,7 @@
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
             const formData = new FormData(form);
-            formData.append('fileToUpload', document.querySelector('#fileInput').files[0]);
+            // formData.append('fileToUpload', document.querySelector('#fileInput').files[0]);
             const response = await fetch('/api/upload.php', {
                 method: 'POST',
                 body: formData

@@ -1,6 +1,7 @@
 <?php
 // echo $_FILES["fileToUpload"];
 // Sprawdzenie, czy formularz został wysłany
+print_r($_FILES);
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["fileToUpload"])) {
     $target_dir = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.'muzyka'.DIRECTORY_SEPARATOR ; // Katalog, do którego będą zapisywane pliki
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); // Pełna ścieżka do zapisanego pliku
