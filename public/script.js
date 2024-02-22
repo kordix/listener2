@@ -43,15 +43,15 @@ let app = new Vue({
         },
         longer(time){
             this.fragmenty[this.fragmentindex].start = parseFloat(parseFloat(this.fragmenty[this.fragmentindex].start) + parseFloat(time));
-            this.fragmenty[this.fragmentindex + 1].start += time;
+            // this.fragmenty[this.fragmentindex + 1].start += time;
             fetch('/api/updatedata.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(this.fragmenty[this.fragmentindex]) })
         },
         longerAll(time) {
             this.fragmenty.forEach(element => {
-                element.start += time;
+                element.start = parseFloat(parseFloat(element.start) + parseFloat(time));
             });
 
-            fetch('/updaterall', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(this.fragmenty) })
+            fetch('/api/updaterall.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(this.fragmenty) })
         },
 
 
@@ -77,7 +77,7 @@ let app = new Vue({
                 self.run = false;
                 
             }, duration * 1000);
-
+            
 
         },
         next() {
