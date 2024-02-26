@@ -66,7 +66,7 @@ let app = new Vue({
             console.log(self.fragmentindex);
             console.log(self.fragmenty[self.fragmentindex]);
 
-            audi.currentTime = parseFloat(self.fragmenty[self.fragmentindex].start);
+            audi.currentTime = parseFloat(self.fragmenty[self.fragmentindex].start) - 0.5;
             console.log(audi.currentTime);
             audi.play();
 
@@ -76,7 +76,7 @@ let app = new Vue({
                 audi.pause();
                 self.run = false;
                 
-            }, duration * 1000);
+            }, duration * 1000 + 500);
             
 
         },
