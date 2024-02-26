@@ -15,7 +15,8 @@ let app = new Vue({
         songsheaders:[],
         fragmenty2:[
 
-        ]
+        ],
+        messages:[]
 
     },
     mounted() {
@@ -45,6 +46,8 @@ let app = new Vue({
             this.fragmenty[this.fragmentindex].start = parseFloat(parseFloat(this.fragmenty[this.fragmentindex].start) + parseFloat(time));
             // this.fragmenty[this.fragmentindex + 1].start += time;
             fetch('/api/updatedata.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(this.fragmenty[this.fragmentindex]) })
+
+            this.messages.push('Przesunięto na ' + this.fragmenty[this.fragmentindex].start);
         },
         longerAll(time) {
             this.fragmenty.forEach(element => {

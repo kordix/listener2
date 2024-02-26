@@ -42,8 +42,8 @@
 
         <div class="row">
             <div class="col-lg-5">
-                <select class="form-select" v-model="piosenka" @change="setSong()" >
-                   <option :value="elem.name" v-for="elem in songsheaders">{{elem.description}}</option>
+                <select class="form-select" v-model="piosenka" @change="setSong()">
+                    <option :value="elem.name" v-for="elem in songsheaders">{{elem.description}}</option>
                 </select>
             </div>
         </div>
@@ -92,15 +92,19 @@
                     <br>
 
                     <br>
-                    <button @click="longer(0.5)">Przesuń o 0.5 s</button>
-                    <button @click="longer(-0.5)">Cofnij o 0.5 s</button>
 
-                    <!-- <button @click="longerAll(1)">Przesuń wszystkie o 1s </button> -->
-                    <button @click="longerAll(0.5)">Przesuń wszystkie o 0.5s </button>
+                    <div v-show="fragmentindex >= 0">
+                        <button @click="longer(0.5)">Przesuń o 0.5 s</button>
+                        <button @click="longer(-0.5)">Cofnij o 0.5 s</button>
 
-                    <!-- <button @click="longerAll(-1)">Cofnij wszystkie o 1s </button> -->
-                    <button @click="longerAll(-0.5)">Cofnij wszystkie o 0.5s </button>
+                        <!-- <button @click="longerAll(1)">Przesuń wszystkie o 1s </button> -->
+                        <button @click="longerAll(0.5)">Przesuń wszystkie o 0.5s </button>
 
+                        <!-- <button @click="longerAll(-1)">Cofnij wszystkie o 1s </button> -->
+                        <button @click="longerAll(-0.5)">Cofnij wszystkie o 0.5s </button>
+
+                        <p v-for="elem in messages">{{elem}}</p>
+                    </div>
 
 
 
@@ -122,7 +126,8 @@
 
         </div>
 
-      
+
+        <p style="font-size:12px">v 1.1</p>
 
     </div>
 
@@ -132,6 +137,7 @@
 
 
     <script type="module" src="script.js"></script>
+
 
 </body>
 

@@ -51,13 +51,18 @@
                 </form>
                 <div id="response"></div>
 
+                <div id="loadingprompt" style="color:red;display:none"><b>Ładowanie...</b></div>
+
     </div>
 
     <script>
 
+        
+
 
         const form = document.getElementById('uploadForm');
         form.addEventListener('submit', async (event) => {
+            document.querySelector('#loadingprompt').style.display = 'block';
             event.preventDefault();
             const formData = new FormData(form);
             // formData.append('fileToUpload', document.querySelector('#fileInput').files[0]);
@@ -65,13 +70,13 @@
                 method: 'POST',
                 body: formData
             });
-            const result = await response.json();
+            // const result = await response.json();
             const responseDiv = document.getElementById('response');
-            if (response.ok) {
-                responseDiv.textContent = result.message;
-            } else {
-                responseDiv.textContent = result.error;
-            }
+            // responseDiv.textContent = response;
+   
+
+            document.querySelector('#loadingprompt').style.display = 'none';
+
         });
 
 
