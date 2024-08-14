@@ -43,7 +43,7 @@
 
             mounted(){
                 let self = this;
-                fetch('/getsongsheaders').then((res) => res.json()).then((res) => { console.log(res); self.songsheaders = res; });
+                fetch('/api/getsongsheaders.php').then((res) => res.json()).then((res) => { console.log(res); self.songsheaders = res; });
 
             },
             methods:{

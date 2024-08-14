@@ -2,7 +2,7 @@
 //if($_SERVER['REQUEST_METHOD'] != 'POST') return;
 
 
-require('../../db.php');
+require('db.php');
 
 
 

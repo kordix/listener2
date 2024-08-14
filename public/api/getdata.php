@@ -1,5 +1,5 @@
 <?php
-require('../../db.php');
+require('db.php');
 
 $sth = $dbh->prepare("SELECT * FROM songs_data");
 

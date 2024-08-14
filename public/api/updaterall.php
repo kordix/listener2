@@ -5,7 +5,7 @@ echo 'DUPA';
 // if($_SERVER['REQUEST_METHOD'] != 'POST') return;
 
 // Wymagane połączenie z bazą danych
-require('../../db.php');
+require('db.php');
 
 // Pobranie danych z JSON-a
 $dane = json_decode(file_get_contents('php://input'));
